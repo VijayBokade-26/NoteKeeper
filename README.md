@@ -1,2 +1,2 @@
 # NoteKeeper
-This is web app which keeps your secrets.
+This is web app which keeps your secrets!
