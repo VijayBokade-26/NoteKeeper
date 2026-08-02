@@ -29,8 +29,6 @@ Note model:
 - updated_at
 
 
-
-
 Auth:
 POST /auth/register/
 POST /auth/login/
