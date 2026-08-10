@@ -9,10 +9,11 @@ class User(AbstractUser):
     is_deleted = models.BooleanField(default=False)
 
     class Meta:
-        order = ["-created_at"]
+        ordering = ["-created_at"]
 
 
 
 
 
 
+                                   
