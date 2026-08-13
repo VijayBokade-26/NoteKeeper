@@ -33,12 +33,17 @@ class SignUpView(APIView):
 
 class LoginView(APIView):
     queryset = UserModel.User.objects.all()
-    serializer_class = serializers.LoginSerializers
+    serializer_class = serializers.LoginSerializer
     permission_class = (IsAuthenticated,)
     Allowed_methods = ["GET", "POST"]   
 
     def post(self, request, *args, **kwargs):
-        request. 
+        pass
+        # try: 
+        #     serializer = self.serializer_class
+        #     serializer.is_valid()
+            
+        
 
            
         
