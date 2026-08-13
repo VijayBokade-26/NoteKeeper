@@ -81,8 +81,38 @@ class LoginSerializer(TokenObtainPairSerializer):
                                 "result": {}
                             }
                         )
+        from authentication.models import OTP
+        from datetime import  datetime
+        import pytz
+        from django.conf import settings
 
-        # otp = User.objects.filter
+        current_time = datetime.now(pytz.timezone(settings.TIME_ZONE))
+
+        otp = OTP.objects.filter(user = self.user, otp_type=  1, otp = otp, expired_at__gt = current_time ).first() 
+        if not otp:
+            raise exceptions.AuthenticationFailed(
+                {
+                    "status":f"error: {status.HTTP_401_UNAUTHORIZED}",
+                    "message": "OTP is invalid! or Expired pleasetry again",
+                    "result":{}
+                }
+            )                                                                                        
+        token = TokenObtainPairSerializer.get_token(self.user)
+        if not self.user.is_active:
+            raise exceptions.AuthenticationFailed(
+                {
+                    "status": "error",
+                    "message": "User is not active! Please contact Admin",
+                    'result': {}
+                }
+            )
+        data = {}
+        data['refresh'] = str(token)
+        data["access"] = str(token.access_token)
+        current_time = datetime.now(pytz.timezone(settings.TIME_ZONE))
+        self.user.last_login = current_time
+        otp.delete()
+        return data
 
     class Meta:
         model = User
