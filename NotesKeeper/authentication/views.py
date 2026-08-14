@@ -38,10 +38,9 @@ class LoginView(APIView):
     Allowed_methods = ["GET", "POST"]   
 
     def post(self, request, *args, **kwargs):
-        pass
-        # try: 
-        #     serializer = self.serializer_class
-        #     serializer.is_valid()
+        pass 
+        
+        
             
         
 
