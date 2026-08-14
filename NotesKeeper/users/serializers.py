@@ -73,7 +73,7 @@ class LoginSerializer(TokenObtainPairSerializer):
                     "result": {}
                 }
             )
-        if not check_password(password, self.password):
+        if not check_password(password, self.user.password):
             raise exceptions.AuthenticationFailed(
                             {
                                 "status": f"error: {status.HTTP_401_UNAUTHORIZED}",
@@ -111,12 +111,9 @@ class LoginSerializer(TokenObtainPairSerializer):
         data["access"] = str(token.access_token)
         current_time = datetime.now(pytz.timezone(settings.TIME_ZONE))
         self.user.last_login = current_time
+        self.user.save(update_fields=["last_login"])
         otp.delete()
         return data
 
-    class Meta:
-        model = User
-        fields = ["email", "password", "otp"]
-
-
+    
 
