@@ -45,11 +45,6 @@ class LoginView(APIView):
             "message": "User Logged in  successfully!!",
             "result":serializer.validated_data
         })
-
-
-
-
-
                     
 
         
