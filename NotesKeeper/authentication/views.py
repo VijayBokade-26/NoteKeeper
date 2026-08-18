@@ -11,7 +11,7 @@ class SignUpView(APIView):
     queryset = UserModel.User.objects.all() 
     serializer_class = serializers.SignUpSerializers
     permission_classes = (IsAuthenticated,)
-    allowed_methods = ["GET", "POST"]
+    allowed_methods = ["POST"]
 
     def post(self,request, *args, **kwargs):
         try:
