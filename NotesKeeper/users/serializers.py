@@ -12,7 +12,7 @@ class SignUpSerializers(serializers.ModelSerializer):
         model = User
         fields = ["first_name", "last_name", "email", "phone", "password", "confirm_password", ]
 
-    def validate(self,attrs):
+    def validate(self,attrs): #attrs contains the payload which user provided into api 
         password = attrs.get("password")
         self.confirm_password  = attrs.pop("confirm_password",None)
 
@@ -20,7 +20,7 @@ class SignUpSerializers(serializers.ModelSerializer):
             raise serializers.ValidationError({"confirm_password": "Password do not match"})
         return attrs
     
-    def create(self, validated_data):
+    def create(self, validated_data): #serializer.save() will call this method and create a new entry. 
         password = validated_data.pop("password")
         user = User(**validated_data)
         user.set_password(password)
