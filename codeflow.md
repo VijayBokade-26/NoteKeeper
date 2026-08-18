@@ -47,3 +47,30 @@ Tags:
 GET    /tags/           → list user's tags
 POST   /tags/           → create tag
 DELETE /tags/{id}/      → delete tag
+
+
+-----------------------------------------------------------------------
+NOTEKEEPER:
+
+=============CODE-FLOW==========
+Registration
+Login with OTP
+Logout
+Reset password
+1.Registration FLow
+fields: firstname, lastname, email, password
+Model : User
+Validate(for validation) and create(for saving data in models )
+Validate ==> use attrs==>password and confirm password if same then save that user
+create Users(**data)
+obj.save()
+
+2.Login Flow :
+in viewset you just need to provide data to serializer and it will do  all the things.
+serailizer flow :
+validate==> email, password, otp then validate and raise exception
+check if email is already exist
+check if password correct or not
+otp and then get token from Tokenobtain pair serializer
+and save  user and update last login
+delete otp and return data
