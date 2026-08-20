@@ -44,7 +44,7 @@ class LoginView(APIView):
             "status": "success",
             "message": "User Logged in  successfully!!",
             "result":serializer.validated_data
-        })  
+        })
                     
 
         
