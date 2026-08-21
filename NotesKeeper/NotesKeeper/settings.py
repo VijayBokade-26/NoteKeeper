@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'notes',
     'users',
-    'authentication'
+    'authentication',
+    'drf_spectacular',
+
 ]
 
 MIDDLEWARE = [
@@ -112,7 +114,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 REST_FRAMEWORK = {
-    "DEFAULT AUTHENTICATION_CLASSES":("rest_framework_simplejwt.authentication.JWTAuthentication")
+    "DEFAULT AUTHENTICATION_CLASSES":("rest_framework_simplejwt.authentication.JWTAuthentication"),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+
 }
 
 # Internationalization
