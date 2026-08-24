@@ -12,4 +12,4 @@ urlpatterns = [
     # path("/",views.ResetPassword.as_view()),
     # path("forget_password/",views.ResetPassword.as_view()),
     
-] 
+]
