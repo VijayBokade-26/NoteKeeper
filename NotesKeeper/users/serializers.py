@@ -1,3 +1,7 @@
+from authentication.models import OTP
+from datetime import  datetime
+import pytz
+from django.conf import settings
 from .models import User
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -66,7 +70,7 @@ class LoginSerializer(TokenObtainPairSerializer):
 
         self.user = User.objects.filter(email__iexact = email).first()
         if not self.user:
-            raise exceptions.AuthenticationFailed(
+            raise exceptions.AuthenticationFailed(   
                 {
                     "status": f"error: {status.HTTP_401_UNAUTHORIZED}",
                     "message": "Invalid Credentials!",
@@ -81,10 +85,6 @@ class LoginSerializer(TokenObtainPairSerializer):
                                 "result": {}
                             }
                         )
-        from authentication.models import OTP
-        from datetime import  datetime
-        import pytz
-        from django.conf import settings
 
         current_time = datetime.now(pytz.timezone(settings.TIME_ZONE))
 
@@ -93,7 +93,7 @@ class LoginSerializer(TokenObtainPairSerializer):
             raise exceptions.AuthenticationFailed(
                 {
                     "status":f"error: {status.HTTP_401_UNAUTHORIZED}",
-                    "message": "OTP is invalid! or Expired pleasetry again",
+                    "message": "OTP is invalid! or Expired please try again",
                     "result":{}
                 }
             )                                                                                        
