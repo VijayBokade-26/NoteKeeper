@@ -70,7 +70,7 @@ class LoginSerializer(TokenObtainPairSerializer):
 
         self.user = User.objects.filter(email__iexact = email).first()
         if not self.user:
-            raise exceptions.AuthenticationFailed(   
+            raise exceptions.AuthenticationFailed(
                 {
                     "status": f"error: {status.HTTP_401_UNAUTHORIZED}",
                     "message": "Invalid Credentials!",
