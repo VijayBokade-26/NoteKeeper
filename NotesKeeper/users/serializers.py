@@ -69,7 +69,7 @@ class LoginSerializer(TokenObtainPairSerializer):
             )
 
         self.user = User.objects.filter(email__iexact = email).first()
-        if not self.user:
+        if not self.user: 
             raise exceptions.AuthenticationFailed(
                 {
                     "status": f"error: {status.HTTP_401_UNAUTHORIZED}",
